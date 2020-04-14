@@ -1,5 +1,5 @@
 {% set name = "gawk" %}
-{% set version = "5.0.1" %}
+{% set version = "5.1.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   - url: https://ftp.gnu.org/gnu/{{ name }}/{{ name }}-{{ version }}.tar.gz
-    sha256: 625bf3718e25a84dc4486135d5cb5388174682362c70107fd13f21572f5603bb
+    sha256: 03a0360edcd84bec156fe211bbc4fc8c78790973ce4e8b990a11d778d40b1a26
     patches:
       - 0004-Fix-AM_TEST-no-more-or-localenl.patch
       - 0005-Fix-IN_TEST-no-more-or-localenl.patch
@@ -16,7 +16,7 @@ source:
 
 
 build:
-  number: 1
+  number: 0
   skip: true  # [win]
 
 requirements:
