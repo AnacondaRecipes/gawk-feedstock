@@ -1,6 +1,6 @@
---- test/Makefile.am	2019-04-16 18:08:51.407956309 -0400
-+++ test/Makefile.am.new	2019-04-16 20:18:35.461283549 -0400
-@@ -607,8 +607,6 @@
+--- test/Makefile.am	2020-04-14 13:07:50.627041178 -0400
++++ test/Makefile.am.new	2020-04-14 13:07:45.111018581 -0400
+@@ -632,8 +632,6 @@
  	litoct.awk \
  	litoct.in \
  	litoct.ok \
@@ -9,7 +9,7 @@
  	longsub.awk \
  	longsub.in \
  	longsub.ok \
-@@ -1317,7 +1315,7 @@
+@@ -1377,7 +1375,7 @@
  	zero2 zeroe0 zeroflag
  
  UNIX_TESTS = \
@@ -18,7 +18,7 @@
  	space strftlng
  
  GAWK_EXT_TESTS = \
-@@ -1409,7 +1407,7 @@
+@@ -1477,7 +1475,7 @@
  NEED_TRADITIONAL = litoct tradanch rscompat
  
  # Lists of tests that run a shell script
@@ -27,21 +27,21 @@
  
  # List of the tests which fail with EXIT CODE 1
  FAIL_CODE1 = \
-@@ -1460,7 +1458,7 @@
- EXPECTED_FAIL_ZOS = \
+@@ -1529,7 +1527,7 @@
  	aasort aasorti arraysort asort asorti backbigs1 backsmalls1 \
- 	backsmalls2 charasbytes concat4 dfamb1 double1 double2 fmttest \
--	forcenum gsubtst5 ignrcas2 lc_num1 localenl mbfw1 mbprintf1 \
-+	forcenum gsubtst5 ignrcas2 lc_num1 mbfw1 mbprintf1 \
- 	mbprintf2 mbprintf3 mbprintf4 mbprintf5 mbstr1 mbstr2 numrange \
- 	printhuge profile5 regrange reint2 rri1 sigpipe1 sortfor sortu \
- 	subamp subi18n symtab1 symtab8 timeout wideidx wideidx2 \
-@@ -2326,7 +2324,7 @@
+ 	backsmalls2 beginfile1 beginfile2 charasbytes clos1way6 concat4 \
+ 	dfamb1 double1 double2 errno fmttest forcenum getlndir gsubtst5 \
+-	ignrcas2 lc_num1 localenl localenl mbfw1 mbprintf1 mbprintf2 \
++	ignrcas2 lc_num1 mbfw1 mbprintf1 mbprintf2 \
+ 	mbprintf3 mbprintf4 mbprintf5 mbstr1 mbstr2 mtchi18n nlstringtest \
+ 	nofile nonfatal2 numrange printhuge profile5 profile5 rebt8b2 \
+ 	regrange reint2 rri1 sigpipe1 sort1 sortfor sortu space sprintfc \
+@@ -2454,7 +2452,7 @@
  		diff -c "$(srcdir)"/$${base}.ok  $$i ; \
  		fi ; \
  		fi ; \
 -	done | more
 +	done
  
- # convenient way to scan valgrind results for errors
- valgrind-scan:
+ # make things easier for z/OS
+ zos-diffout:
