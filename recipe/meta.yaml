@@ -23,7 +23,8 @@ requirements:
   build:
     - {{ compiler('c') }}
     - make  # [unix]
-  host:
+    - patch       # [not win]
+   host:
     - gettext   # [osx]
     - readline  # [osx]
 
