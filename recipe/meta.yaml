@@ -24,7 +24,7 @@ requirements:
     - {{ compiler('c') }}
     - make  # [unix]
     - patch       # [not win]
-   host:
+  host:
     - gettext   # [osx]
     - readline  # [osx]
 
