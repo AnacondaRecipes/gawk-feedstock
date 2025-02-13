@@ -1,0 +1,11 @@
+--- pc/Makefile.tst	2025-02-13 08:42:54.143477847 +0000
++++ "pc/Makefile copy.tst"	2025-02-13 14:10:28.731965986 +0000
+@@ -461,7 +461,7 @@
+ 	fi
+ 
+ makepmafile: makepmafile.c
+-	$(CC) $(srcdir)/makepmafile.c -o $@
++	$(CC) makepmafile.c -o $@
+ 
+ pma:
+ 	@echo $@
