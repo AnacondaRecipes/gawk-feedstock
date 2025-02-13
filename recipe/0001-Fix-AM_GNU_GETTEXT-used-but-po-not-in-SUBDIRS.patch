@@ -1,9 +1,0 @@
-diff -urN work.orig/extension/Makefile.am work/extension/Makefile.am
---- work.orig/extension/Makefile.am	2018-05-26 01:43:00.000000000 +0100
-+++ work/extension/Makefile.am	2018-05-26 01:43:14.000000000 +0100
-@@ -150,4 +150,4 @@
- 	revtwoway.3am rwarray.3am time.3am
- 
- # gettext requires this
--SUBDIRS =
-+SUBDIRS = po
