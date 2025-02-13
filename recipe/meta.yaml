@@ -22,11 +22,21 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - make  # [unix]
-    - patch       # [not win]
+    - patch  # [not win]
+    - coreutils
+    - gnuconfig
+    - grep
+    - sed
   host:
-    - gettext   # [osx]
-    - readline  # [osx]
+    - gettext
+    - readline
+    - gmp
+    - mpfr
+  run:
+    - gmp
+    - mpfr
 
 test:
   commands:
