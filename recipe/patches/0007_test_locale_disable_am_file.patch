@@ -1,5 +1,5 @@
 --- test/Makefile.am	2025-02-13 08:42:54.171861128 +0000
-+++ "test/Makefile copy.am"	2025-02-13 10:22:56.069146914 +0000
++++ "test/Makefile copy.am"	2025-02-13 15:38:25.531304966 +0000
 @@ -740,8 +740,6 @@
  	litoct.awk \
  	litoct.in \
@@ -27,3 +27,21 @@
  
  # List of the tests which fail with EXIT CODE 1
  FAIL_CODE1 = \
+@@ -1877,17 +1875,6 @@
+ 	$(MAKE) $(NEED_PMA) ; \
+ 	fi
+ 
+-makepmafile: makepmafile.c
+-	$(CC) $(srcdir)/makepmafile.c -o $@
+-
+-pma:
+-	@echo $@
+-	@GAWK_PERSIST_FILE=test.pma $(AWK) 'BEGIN { print ++i }' > _$@ 2>&1
+-	@GAWK_PERSIST_FILE=test.pma $(AWK) 'BEGIN { print ++i }' >> _$@ 2>&1
+-	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
+-	@-$(RM) -f test.pma
+-
+-
+ msg::
+ 	@echo ''
+ 	@echo 'Any output from "$(CMP)" is bad news, although some differences'
