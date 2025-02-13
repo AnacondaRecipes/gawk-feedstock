@@ -1,6 +1,6 @@
---- a/test/makepmafile.c
-+++ b/test/makepmafile.c
-@@ -29,6 +29,7 @@
+--- test/makepmafile.c	2025-02-13 08:42:54.242310586 +0000
++++ test/makepmafile-new.c	2025-02-13 11:18:50.616173363 +0000
+@@ -32,6 +32,7 @@
  #include <sys/types.h>
  #include <sys/stat.h>
  #include <fcntl.h>
@@ -8,10 +8,10 @@
  
  int
  main(int argc, char **argv)
-@@ -36,21 +37,42 @@
- 	size_t four_meg = 1024 * 1024 * 4;
+@@ -40,21 +41,44 @@
  	char c = 0;
  	int fd = creat("test.pma", 0600);
+ 
 +	char cwd[PATH_MAX];
 +	struct stat st;
 +
@@ -19,10 +19,12 @@
 +	if (getcwd(cwd, sizeof(cwd)) != NULL) {
 +		fprintf(stderr, "Current working directory: %s\n", cwd);
 +	}
- 
++
  	if (fd < 0) {
  		fprintf(stderr, "%s: could not create test.pma: %s\n",
  				argv[0], strerror(errno));
+ 		exit(EXIT_FAILURE);
+ 	}
 +		// Try creating in /tmp as fallback
 +		fd = creat("/tmp/test.pma", 0600);
 +		if (fd < 0) {
@@ -36,19 +38,18 @@
 +	if (fstat(fd, &st) == 0) {
 +		fprintf(stderr, "Filesystem type for test file: %lu\n", 
 +				(unsigned long)st.st_dev);
- 		exit(EXIT_FAILURE);
- 	}
  
  	if (lseek(fd, four_meg - 1, SEEK_SET) < 0) {
  		fprintf(stderr, "%s: lseek failed: %s\n",
  				argv[0], strerror(errno));
-+		unlink("test.pma");
++        unlink("test.pma");
  		exit(EXIT_FAILURE);
  	}
  
  	if (write(fd, &c, 1) < 0) {
  		fprintf(stderr, "%s: write failed: %s\n",
  				argv[0], strerror(errno));
-+		unlink("test.pma");
++        unlink("test.pma");
  		exit(EXIT_FAILURE);
  	}
+ 
