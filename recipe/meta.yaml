@@ -22,13 +22,10 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
-    - {{ stdlib("c") }}
     - make  # [unix]
     - patch  # [not win]
     - coreutils
     - gnuconfig
-    - grep
-    - sed
   host:
     - gettext
     - readline
