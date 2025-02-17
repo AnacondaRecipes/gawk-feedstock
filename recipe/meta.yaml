@@ -56,5 +56,7 @@ about:
     between gawk and other awk implementations.
 
 extra:
+  skip-lints:
+    - http_url
   recipe-maintainers:
     - bollwyvl
