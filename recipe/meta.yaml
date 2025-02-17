@@ -11,7 +11,8 @@ source:
     patches:
       - patches/0006_test_locale_disable_in_file.patch
       - patches/0007_test_locale_disable_am_file.patch
-      - patches/0008_no_more_or_localenl.patch
+      - patches/0008_test_locale_disable_tst_file.patch
+      - patches/0009_remove_localenl_in_vms.patch
   - url: http://git.savannah.gnu.org/cgit/{{ name }}.git/plain/bootstrap.sh?h={{ name }}-{{ version }}
     sha256: 34fef05a25afdbe00edeffd1defa6d0578257651454fa2295d03db15b88358b3
 

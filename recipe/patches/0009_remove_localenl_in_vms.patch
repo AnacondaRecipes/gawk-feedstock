@@ -1,0 +1,35 @@
+--- vms/vmstest.com	2025-02-17 10:16:24.353757447 +0000
++++ "vms/vmstest copy.com"	2025-02-17 10:16:28.063241159 +0000
+@@ -264,7 +264,7 @@
+ $!
+ $unix:
+ $unix_tests:	echo "unix_tests..."
+-$		list = "fflush getlnhd localenl pid pipeio1 pipeio2" -
++$		list = "fflush getlnhd pid pipeio1 pipeio2" -
+ 		  + " poundbang rtlen rtlen01 space strftlng"
+ $		gosub list_of_tests
+ $		return
+@@ -3417,23 +3417,6 @@
+ $	endif
+ $	return
+ $
+-$localenl:	echo "localenl"
+-$	test_class = "unix_tests"
+-$	skip_reason = "Not supported."
+-$	gosub junit_report_skip
+-$	return
+-$!!localenl:	echo "localenl"
+-$	! localenl.com does not exist.
+-$	@localenl.com /Output=_localenl.tmp	! sh ./localenl.sh >tmp.
+-$	cmp localenl.ok sys$disk:[]_localenl.tmp
+-$	if $status
+-$	then
+-$	    rm _localenl.tmp;
+-$	    gosub junit_report_pass
+-$	else
+-$	    gosub junit_report_fail_diff
+-$	endif
+-$	return
+ $
+ $mbprintf1:	echo "''test'"
+ $	test_class = "charset_tests"

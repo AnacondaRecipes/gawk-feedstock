@@ -1,0 +1,29 @@
+--- pc/Makefile.tst	2025-02-13 08:42:54.143477847 +0000
++++ "pc/Makefile copy.tst"	2025-02-17 10:06:53.406587243 +0000
+@@ -184,7 +184,7 @@
+ 	widesub4 wjposer1 zero2 zeroe0 zeroflag
+ 
+ UNIX_TESTS = \
+-	fflush getlnhd localenl pid pipeio1 pipeio2 poundbang rtlen rtlen01 \
++	fflush getlnhd pid pipeio1 pipeio2 poundbang rtlen rtlen01 \
+ 	space strftlng
+ 
+ GAWK_EXT_TESTS = \
+@@ -297,7 +297,7 @@
+ NEED_CSV = csv1 csv2 csv3 csvodd
+ 
+ # Lists of tests that run a shell script
+-RUN_SHELL = exit fflush localenl modifiers next randtest rtlen rtlen01
++RUN_SHELL = exit fflush modifiers next randtest rtlen rtlen01
+ 
+ # List of the tests which fail with EXIT CODE 1
+ FAIL_CODE1 = \
+@@ -4062,7 +4062,7 @@
+ 		diff -u "$(srcdir)"/$${base}.ok  $$i ; \
+ 		fi ; \
+ 		fi ; \
+-	done | $${PAGER:-more}
++	done
+ 
+ # make things easier for z/OS
+ zos-diffout:
