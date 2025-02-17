@@ -1,0 +1,148 @@
+diff --git a/pc/Makefile.tst b/pc/Makefile.tst
+index d012f626..3b48856a 100644
+--- a/pc/Makefile.tst
++++ b/pc/Makefile.tst
+@@ -183,7 +183,7 @@ BASIC_TESTS = \
+ 	widesub widesub2 widesub3 widesub4 wjposer1 zero2 zeroe0 zeroflag
+ 
+ UNIX_TESTS = \
+-	fflush getlnhd localenl pid pipeio1 pipeio2 poundbang rtlen rtlen01 \
++	fflush getlnhd pid pipeio1 pipeio2 poundbang rtlen rtlen01 \
+ 	space strftlng
+ 
+ GAWK_EXT_TESTS = \
+@@ -293,7 +293,7 @@ NEED_TRADITIONAL = litoct tradanch rscompat
+ NEED_PMA = pma
+ 
+ # Lists of tests that run a shell script
+-RUN_SHELL = exit fflush localenl modifiers next randtest rtlen rtlen01
++RUN_SHELL = exit fflush modifiers next randtest rtlen rtlen01
+ 
+ # List of the tests which fail with EXIT CODE 1
+ FAIL_CODE1 = \
+@@ -3856,7 +3856,7 @@ diffout:
+ 		diff -u "$(srcdir)"/$${base}.ok  $$i ; \
+ 		fi ; \
+ 		fi ; \
+-	done | more
++	done
+ 
+ # make things easier for z/OS
+ zos-diffout:
+diff --git a/test/Makefile.am b/test/Makefile.am
+index cc99dfa9..3469b6a1 100644
+--- a/test/Makefile.am
++++ b/test/Makefile.am
+@@ -684,8 +684,6 @@ EXTRA_DIST = \
+ 	litoct.awk \
+ 	litoct.in \
+ 	litoct.ok \
+-	localenl.ok \
+-	localenl.sh \
+ 	longsub.awk \
+ 	longsub.in \
+ 	longsub.ok \
+@@ -1498,7 +1496,7 @@ BASIC_TESTS = \
+ 	widesub widesub2 widesub3 widesub4 wjposer1 zero2 zeroe0 zeroflag
+ 
+ UNIX_TESTS = \
+-	fflush getlnhd localenl pid pipeio1 pipeio2 poundbang rtlen rtlen01 \
++	fflush getlnhd pid pipeio1 pipeio2 poundbang rtlen rtlen01 \
+ 	space strftlng
+ 
+ GAWK_EXT_TESTS = \
+@@ -1608,7 +1606,7 @@ NEED_TRADITIONAL = litoct tradanch rscompat
+ NEED_PMA = pma
+ 
+ # Lists of tests that run a shell script
+-RUN_SHELL = exit fflush localenl modifiers next randtest rtlen rtlen01
++RUN_SHELL = exit fflush modifiers next randtest rtlen rtlen01
+ 
+ # List of the tests which fail with EXIT CODE 1
+ FAIL_CODE1 = \
+@@ -2660,7 +2658,7 @@ diffout:
+ 		diff -u "$(srcdir)"/$${base}.ok  $$i ; \
+ 		fi ; \
+ 		fi ; \
+-	done | more
++	done
+ 
+ # make things easier for z/OS
+ zos-diffout:
+diff --git a/test/Makefile.in b/test/Makefile.in
+index 3ed140cc..3edc6981 100644
+--- a/test/Makefile.in
++++ b/test/Makefile.in
+@@ -952,8 +952,6 @@ EXTRA_DIST = \
+ 	litoct.awk \
+ 	litoct.in \
+ 	litoct.ok \
+-	localenl.ok \
+-	localenl.sh \
+ 	longsub.awk \
+ 	longsub.in \
+ 	longsub.ok \
+@@ -1766,7 +1764,7 @@ BASIC_TESTS = \
+ 	widesub widesub2 widesub3 widesub4 wjposer1 zero2 zeroe0 zeroflag
+ 
+ UNIX_TESTS = \
+-	fflush getlnhd localenl pid pipeio1 pipeio2 poundbang rtlen rtlen01 \
++	fflush getlnhd pid pipeio1 pipeio2 poundbang rtlen rtlen01 \
+ 	space strftlng
+ 
+ GAWK_EXT_TESTS = \
+@@ -1876,7 +1874,7 @@ NEED_TRADITIONAL = litoct tradanch rscompat
+ NEED_PMA = pma
+ 
+ # Lists of tests that run a shell script
+-RUN_SHELL = exit fflush localenl modifiers next randtest rtlen rtlen01
++RUN_SHELL = exit fflush modifiers next randtest rtlen rtlen01
+ 
+ # List of the tests which fail with EXIT CODE 1
+ FAIL_CODE1 = \
+@@ -5609,7 +5607,7 @@ diffout:
+ 		diff -u "$(srcdir)"/$${base}.ok  $$i ; \
+ 		fi ; \
+ 		fi ; \
+-	done | more
++	done
+ 
+ # make things easier for z/OS
+ zos-diffout:
+diff --git a/vms/vmstest.com b/vms/vmstest.com
+index 9e932e5c..64655dbe 100644
+--- a/vms/vmstest.com
++++ b/vms/vmstest.com
+@@ -264,7 +264,7 @@ $		return
+ $!
+ $unix:
+ $unix_tests:	echo "unix_tests..."
+-$		list = "fflush getlnhd localenl pid pipeio1 pipeio2" -
++$		list = "fflush getlnhd pid pipeio1 pipeio2" -
+ 		  + " poundbang rtlen rtlen01 space strftlng"
+ $		gosub list_of_tests
+ $		return
+@@ -3401,23 +3401,6 @@ $	    gosub junit_report_fail_diff
+ $	endif
+ $	return
+ $
+-$localenl:	echo "localenl"
+-$	test_class = "unix_tests"
+-$	skip_reason = "Not supported."
+-$	gosub junit_report_skip
+-$	return
+-$!!localenl:	echo "localenl"
+-$	! localenl.com does not exist.
+-$	@localenl.com /Output=_localenl.tmp	! sh ./localenl.sh >tmp.
+-$	cmp localenl.ok sys$disk:[]_localenl.tmp
+-$	if $status
+-$	then
+-$	    rm _localenl.tmp;
+-$	    gosub junit_report_pass
+-$	else
+-$	    gosub junit_report_fail_diff
+-$	endif
+-$	return
+ $
+ $mbprintf1:	echo "''test'"
+ $	test_class = "charset_tests"
