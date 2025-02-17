@@ -27,23 +27,6 @@
  
  # List of the tests which fail with EXIT CODE 1
  FAIL_CODE1 = \
-@@ -2329,16 +2327,6 @@
- 	$(MAKE) $(NEED_PMA) ; \
- 	fi
- 
--makepmafile: makepmafile.c
--	$(CC) $(srcdir)/makepmafile.c -o $@
--
--pma:
--	@echo $@
--	@GAWK_PERSIST_FILE=test.pma $(AWK) 'BEGIN { print ++i }' > _$@ 2>&1
--	@GAWK_PERSIST_FILE=test.pma $(AWK) 'BEGIN { print ++i }' >> _$@ 2>&1
--	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
--	@-$(RM) -f test.pma
--
- msg::
- 	@echo ''
- 	@echo 'Any output from "$(CMP)" is bad news, although some differences'
 @@ -4512,11 +4500,6 @@
  	@-AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
  	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@

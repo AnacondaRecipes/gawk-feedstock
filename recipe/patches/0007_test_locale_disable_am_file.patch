@@ -27,21 +27,3 @@
  
  # List of the tests which fail with EXIT CODE 1
  FAIL_CODE1 = \
-@@ -1877,17 +1875,6 @@
- 	$(MAKE) $(NEED_PMA) ; \
- 	fi
- 
--makepmafile: makepmafile.c
--	$(CC) $(srcdir)/makepmafile.c -o $@
--
--pma:
--	@echo $@
--	@GAWK_PERSIST_FILE=test.pma $(AWK) 'BEGIN { print ++i }' > _$@ 2>&1
--	@GAWK_PERSIST_FILE=test.pma $(AWK) 'BEGIN { print ++i }' >> _$@ 2>&1
--	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
--	@-$(RM) -f test.pma
--
--
- msg::
- 	@echo ''
- 	@echo 'Any output from "$(CMP)" is bad news, although some differences'
