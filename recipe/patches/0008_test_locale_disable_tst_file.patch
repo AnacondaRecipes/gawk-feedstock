@@ -22,7 +22,7 @@
  		diff -u "$(srcdir)"/$${base}.ok  $$i ; \
  		fi ; \
  		fi ; \
--	done | $${PAGER:-more}
+-	done | more
 +	done
  
  # make things easier for z/OS
