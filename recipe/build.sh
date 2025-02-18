@@ -8,9 +8,18 @@ mv "bootstrap.sh?h=${PKG_NAME}-${PKG_VERSION}" bootstrap.sh
 chmod +x ./bootstrap.sh
 ./bootstrap.sh
 
-./configure --prefix="${PREFIX}" \
-            --with-readline="${PREFIX}" \
-            --disable-pma
+if [[ ${target_platform} == linux-64 ]]; then
+    ./configure --prefix="${PREFIX}" \
+                --with-readline="${PREFIX}" \
+                --disable-pma
+elif [[ ${target_platform} == linux-s390x ]]; then
+    ./configure --prefix="${PREFIX}" \
+                --with-readline="${PREFIX}" \
+                --disable-pma
+else
+    ./configure --prefix="${PREFIX}" \
+            --with-readline="${PREFIX}"
+fi
 
 make -j${CPU_COUNT} AM_V=99
 
