@@ -9,7 +9,8 @@ chmod +x ./bootstrap.sh
 ./bootstrap.sh
 
 ./configure --prefix="${PREFIX}" \
-            --with-readline="${PREFIX}"
+            --with-readline="${PREFIX}" \
+            --disable-pma
 
 make -j${CPU_COUNT} AM_V=99
 
