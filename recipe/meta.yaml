@@ -46,7 +46,7 @@ about:
     The awk utility interprets a special-purpose programming language that
     makes it easy to handle simple data-reformatting jobs.
   doc_url: https://www.gnu.org/software/gawk/manual/gawk.html
-  dev_url: http://savannah.gnu.org/projects/gawk/
+  dev_url: https://savannah.gnu.org/projects/gawk/
   description: |
     The GNU implementation of awk is called gawk; if you invoke it with the
     proper options or environment variables, it is fully compatible with the
@@ -56,7 +56,5 @@ about:
     between gawk and other awk implementations.
 
 extra:
-  skip-lints:
-    - http_url
   recipe-maintainers:
     - bollwyvl
