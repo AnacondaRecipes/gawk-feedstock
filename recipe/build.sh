@@ -8,8 +8,21 @@ mv "bootstrap.sh?h=${PKG_NAME}-${PKG_VERSION}" bootstrap.sh
 chmod +x ./bootstrap.sh
 ./bootstrap.sh
 
-./configure --prefix="${PREFIX}" \
+# For linux-64 and linux-s390x platforms, we disable the persistent memory allocator (PMA)
+# by passing --disable-pma to the configure script. This allocator is not required on these
+# architectures and disabling it avoids potential build or runtime issues.
+if [[ ${target_platform} == linux-64 ]]; then
+    ./configure --prefix="${PREFIX}" \
+                --with-readline="${PREFIX}" \
+                --disable-pma
+elif [[ ${target_platform} == linux-s390x ]]; then
+    ./configure --prefix="${PREFIX}" \
+                --with-readline="${PREFIX}" \
+                --disable-pma
+else
+    ./configure --prefix="${PREFIX}" \
             --with-readline="${PREFIX}"
+fi
 
 make -j${CPU_COUNT} AM_V=99
 

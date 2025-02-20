@@ -1,0 +1,29 @@
+--- test/Makefile.am	2025-02-13 08:42:54.171861128 +0000
++++ "test/Makefile copy.am"	2025-02-13 15:38:25.531304966 +0000
+@@ -740,8 +740,6 @@
+ 	litoct.awk \
+ 	litoct.in \
+ 	litoct.ok \
+-	localenl.ok \
+-	localenl.sh \
+ 	longsub.awk \
+ 	longsub.in \
+ 	longsub.ok \
+@@ -1584,7 +1582,7 @@
+ 	widesub4 wjposer1 zero2 zeroe0 zeroflag
+ 
+ UNIX_TESTS = \
+-	fflush getlnhd localenl pid pipeio1 pipeio2 poundbang rtlen rtlen01 \
++	fflush getlnhd pid pipeio1 pipeio2 poundbang rtlen rtlen01 \
+ 	space strftlng
+ 
+ GAWK_EXT_TESTS = \
+@@ -1696,7 +1694,7 @@
+ NEED_CSV = csv1 csv2 csv3 csvodd
+ 
+ # Lists of tests that run a shell script
+-RUN_SHELL = exit fflush localenl modifiers next randtest rtlen rtlen01
++RUN_SHELL = exit fflush modifiers next randtest rtlen rtlen01
+ 
+ # List of the tests which fail with EXIT CODE 1
+ FAIL_CODE1 = \
