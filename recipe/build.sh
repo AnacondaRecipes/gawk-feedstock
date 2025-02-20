@@ -11,11 +11,7 @@ chmod +x ./bootstrap.sh
 # For linux-64 and linux-s390x platforms, we disable the persistent memory allocator (PMA)
 # by passing --disable-pma to the configure script. This allocator is not required on these
 # architectures and disabling it avoids potential build or runtime issues.
-if [[ ${target_platform} == linux-64 ]]; then
-    ./configure --prefix="${PREFIX}" \
-                --with-readline="${PREFIX}" \
-                --disable-pma
-elif [[ ${target_platform} == linux-s390x ]]; then
+elif [[ ${target_platform} == linux-*]]; then
     ./configure --prefix="${PREFIX}" \
                 --with-readline="${PREFIX}" \
                 --disable-pma
