@@ -1,5 +1,5 @@
---- vms/vmstest.com	2025-02-17 10:16:24.353757447 +0000
-+++ "vms/vmstest copy.com"	2025-02-17 10:16:28.063241159 +0000
+--- a/vms/vmstest.com
++++ b/vms/vmstest.com
 @@ -264,7 +264,7 @@
  $!
  $unix:

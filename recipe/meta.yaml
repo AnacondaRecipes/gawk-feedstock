@@ -1,5 +1,5 @@
 {% set name = "gawk" %}
-{% set version = "5.3.1" %}
+{% set version = "5.4.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,14 +7,18 @@ package:
 
 source:
   - url: https://ftp.gnu.org/gnu/{{ name }}/{{ name }}-{{ version }}.tar.gz
-    sha256: fa41b3a85413af87fb5e3a7d9c8fa8d4a20728c67651185bb49c38a7f9382b1e
+    sha256: 8b3b0ea83930311a3f30905d3ce898d32c6103c2fe20d6a90b40341171b174de
     patches:
+      # Disable localenl test — fails under conda build locale env
       - patches/0006_test_locale_disable_in_file.patch
       - patches/0007_test_locale_disable_am_file.patch
       - patches/0008_test_locale_disable_tst_file.patch # [linux]
       - patches/0009_remove_localenl_in_vms.patch # [linux]
+      # Without MPFR, NODE layout breaks unassigned→"" (prints "0"); upstream bf85f8a
+      # https://lists.gnu.org/archive/html/bug-gawk/2026-07/msg00027.html
+      - patches/0010_node_no_mpfr_align.patch
   - url: https://git.savannah.gnu.org/cgit/{{ name }}.git/plain/bootstrap.sh?h={{ name }}-{{ version }}
-    sha256: 34fef05a25afdbe00edeffd1defa6d0578257651454fa2295d03db15b88358b3
+    sha256: 8aaf0cb1653e4c9535a906cf1cad04eb3f7877e554300139754dba48fb5f8bd2
 
 
 build:
@@ -24,11 +28,11 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
+    - {{ stdlib('c') }}
     - make  # [unix]
-    - patch       # [not win]
   host:
-    - gettext   # [osx]
-    - readline  # [osx]
+    - gettext {{ gettext }}   # [osx]
+    - readline {{ readline }}  # [osx]
 
 test:
   commands:
@@ -56,5 +60,8 @@ about:
     between gawk and other awk implementations.
 
 extra:
+  skip-lints:
+    # gnu.org returns 403 to PBP linter runners (not a real dead URL)
+    - reachable_url
   recipe-maintainers:
     - bollwyvl
