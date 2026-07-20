@@ -1,0 +1,26 @@
+--- a/awk.h
++++ b/awk.h
+@@ -2047,13 +2047,19 @@
+ 		return s;
+ 	}
+ 
++	/*
++	 * Unassigned elems have STRCUR but neither CONVFMT_FMT nor OFMT_FMT;
++	 * without this, force_string reformats them as "0" (5.4.1 regression).
++	 */
+ 	if ((s->flags & STRCUR) != 0
+-		&& (s->stfmt == STFMT_UNUSED || (s->stfmt == fmtidx
+-						&& (s->flags & (CONVFMT_FMT|OFMT_FMT)) == fmtflag
++		&& ((s->flags & (CONVFMT_FMT|OFMT_FMT)) == 0
++		    || s->stfmt == STFMT_UNUSED
++		    || (s->stfmt == fmtidx
++			&& (s->flags & (CONVFMT_FMT|OFMT_FMT)) == fmtflag
+ #ifdef HAVE_MPFR
+-						&& s->strndmode == MPFR_round_mode
++			&& s->strndmode == MPFR_round_mode
+ #endif
+-				)))
++			)))
+ 		return s;
+ 	return format_val(fmtstr, fmtidx, fmtflag, s);
+ }
