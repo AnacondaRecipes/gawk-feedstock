@@ -14,8 +14,9 @@ source:
       - patches/0007_test_locale_disable_am_file.patch
       - patches/0008_test_locale_disable_tst_file.patch # [linux]
       - patches/0009_remove_localenl_in_vms.patch # [linux]
-      # 5.4.1: unassigned elems print as "0" after force_string (make check)
-      - patches/0010_force_string_unassigned.patch
+      # Without MPFR, NODE layout breaks unassigned→"" (prints "0"); upstream bf85f8a
+      # https://lists.gnu.org/archive/html/bug-gawk/2026-07/msg00027.html
+      - patches/0010_node_no_mpfr_align.patch
   - url: https://git.savannah.gnu.org/cgit/{{ name }}.git/plain/bootstrap.sh?h={{ name }}-{{ version }}
     sha256: 8aaf0cb1653e4c9535a906cf1cad04eb3f7877e554300139754dba48fb5f8bd2
 
