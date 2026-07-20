@@ -29,10 +29,9 @@ requirements:
     - {{ compiler('c') }}
     - {{ stdlib('c') }}
     - make  # [unix]
-    - patch       # [not win]
   host:
-    - gettext   # [osx]
-    - readline  # [osx]
+    - gettext {{ gettext }}   # [osx]
+    - readline {{ readline }}  # [osx]
 
 test:
   commands:
