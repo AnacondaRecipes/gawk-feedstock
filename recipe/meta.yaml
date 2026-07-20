@@ -59,5 +59,8 @@ about:
     between gawk and other awk implementations.
 
 extra:
+  skip-lints:
+    # gnu.org returns 403 to PBP linter runners (not a real dead URL)
+    - reachable_url
   recipe-maintainers:
     - bollwyvl
