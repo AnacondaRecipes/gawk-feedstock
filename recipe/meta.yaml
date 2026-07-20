@@ -16,6 +16,8 @@ source:
       - patches/0009_remove_localenl_in_vms.patch # [linux]
       # 5.4.1: unassigned elems print as "0" after force_string (make check)
       - patches/0010_force_string_unassigned.patch
+      # PBP macOS: ß/ẞ casefold differs from upstream ok/ok2/ok3
+      - patches/0011_case_check_ok4.patch
   - url: https://git.savannah.gnu.org/cgit/{{ name }}.git/plain/bootstrap.sh?h={{ name }}-{{ version }}
     sha256: 8aaf0cb1653e4c9535a906cf1cad04eb3f7877e554300139754dba48fb5f8bd2
 

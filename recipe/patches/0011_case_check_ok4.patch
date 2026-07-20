@@ -1,0 +1,67 @@
+--- /dev/null
++++ b/test/case-check.ok4
+@@ -0,0 +1,24 @@
++case (i):
++	Σ ~ σ: expect true,  got true
++	σ ~ Σ: expect true,  got true
++	Σ ~ ς: expect true,  got true
++	ς ~ Σ: expect false, got false
++	σ ~ ς: expect false, got false
++	ς ~ σ: expect false, got false
++case (ii)
++	Ω ~ ω: expect true,  got true
++	ω ~ Ω: expect true,  got true
++	Ω ~ ω: expect false, got false
++	ω ~ Ω: expect true,  got true
++	Ω ~ Ω: expect false, got false
++	Ω ~ Ω: expect false, got false
++case (iii)
++	ẞ ~ ß: expect false, got false
++	ß ~ ẞ: expect true,  got false
++case (iv)
++	Ǆ ~ ǆ: expect true,  got true
++	ǆ ~ Ǆ: expect true,  got true
++	Ǆ ~ ǅ: expect true,  got true
++	ǅ ~ Ǆ: expect false, got false
++	ǆ ~ ǅ: expect true,  got true
++	ǅ ~ ǆ: expect false, got false
+--- a/test/Makefile.am
++++ b/test/Makefile.am
+@@ -184,6 +184,7 @@
+ 	case-check.ok \
+ 	case-check.ok2 \
+ 	case-check.ok3 \
++	case-check.ok4 \
+ 	callparam.awk \
+ 	callparam.ok \
+ 	charasbytes.awk \
+@@ -2797,7 +2798,8 @@
+ 	@echo $@
+ 	@-[ -z "$$GAWKLOCALE" ] && GAWKLOCALE=en_US.UTF-8; export GAWKLOCALE; \
+ 	AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
+-	@-if $(CMP_S) "$(srcdir)"/$@.ok3 _$@ > /dev/null || \
++	@-if $(CMP_S) "$(srcdir)"/$@.ok4 _$@ > /dev/null || \
++	$(CMP_S) "$(srcdir)"/$@.ok3 _$@ > /dev/null || \
+ 	$(CMP_S) "$(srcdir)"/$@.ok2 _$@ > /dev/null || $(CMP) "$(srcdir)"/$@.ok _$@ ; \
+ 	then rm -f _$@ ; \
+ 	fi
+--- a/test/Makefile.in
++++ b/test/Makefile.in
+@@ -448,6 +448,7 @@
+ 	case-check.ok \
+ 	case-check.ok2 \
+ 	case-check.ok3 \
++	case-check.ok4 \
+ 	callparam.awk \
+ 	callparam.ok \
+ 	charasbytes.awk \
+@@ -3244,7 +3245,8 @@
+ 	@echo $@
+ 	@-[ -z "$$GAWKLOCALE" ] && GAWKLOCALE=en_US.UTF-8; export GAWKLOCALE; \
+ 	AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
+-	@-if $(CMP_S) "$(srcdir)"/$@.ok3 _$@ > /dev/null || \
++	@-if $(CMP_S) "$(srcdir)"/$@.ok4 _$@ > /dev/null || \
++	$(CMP_S) "$(srcdir)"/$@.ok3 _$@ > /dev/null || \
+ 	$(CMP_S) "$(srcdir)"/$@.ok2 _$@ > /dev/null || $(CMP) "$(srcdir)"/$@.ok _$@ ; \
+ 	then rm -f _$@ ; \
+ 	fi
